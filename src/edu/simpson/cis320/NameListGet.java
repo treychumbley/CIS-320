@@ -36,24 +36,4 @@ public class NameListGet extends HttpServlet {
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
     }
 
-    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        // Type of output (HTML, JSON, image, whatever
-        response.setContentType("text/plain");
-        // Get an object that can write to the network
-        PrintWriter out = response.getWriter();
-        // Write to the network
-        out.print("Hello");
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-
-        // Replace the line below with your database code that will
-        // write out your JSON file.
-        out.print("{ \"Field\":\"Value\"}");
-
-    }
-    
 }

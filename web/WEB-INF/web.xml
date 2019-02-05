@@ -8,18 +8,6 @@
         <servlet-name>NameListGet</servlet-name>
         <servlet-class>edu.simpson.cis320.NameListGet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>HelloWorldServlet</servlet-name>
-        <servlet-class>edu.simpson.cis320.HelloWorldServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>JSONjavaServlet</servlet-name>
-        <servlet-class>edu.simpson.cis320.JSONjavaServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>helloWorldServlet</servlet-name>
-        <servlet-class>edu.simpson.cis320.helloWorldServlet</servlet-class>
-    </servlet>
 
     <servlet-mapping>
         <servlet-name>NameListGet</servlet-name>
