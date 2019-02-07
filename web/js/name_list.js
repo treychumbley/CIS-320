@@ -10,7 +10,8 @@ function updateTable(){
             // it to see the fields. Specifically, it is an array of objects.
             // Here we loop the array and print the first name.
             for (var i = 0; i < json_result.length; i++) {
-                console.log(json_result[i].first + " " + json_result[i].last);
+                console.log(json_result[i].first);
+                $('#datatable tr:last').after('<tr><td>'json_result[i].first'</td></tr>');
             }
             console.log("Done");
         }
