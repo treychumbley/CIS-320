@@ -12,28 +12,21 @@ import com.google.gson.Gson;
 
 @WebServlet(name = "NameListGet")
 public class NameListGet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Get setup up to output JSON text
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
 
-        // Use our DAO to get a list of people
         List <Person> peopleList = PersonDAO.getPeople();
 
-        // Create an instance of the Google class that can convert
-        // business object to JSON strings.
+        // Replace the line below with your database code that will
+        // write out your JSON file.
         Gson gson = new Gson();
-
-        // Go ahead and turn peopleList into a JSON string
         String json = gson.toJson(peopleList);
 
-        // Write out that string
-        out.println(json);
+        out.print(json);
+
 
     }
-
-    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-    }
-
 }
