@@ -33,6 +33,16 @@ function showDialogAdd() {
     //Clear out the values in the form.
     //Otherwise we'll keep values from when we last opened or hit edit.
     //I'm getting started, you  can finish.
+    $('#firstName').removeClass("is-valid");
+    $('#lastName').removeClass("is-valid");
+    $('#birthday').removeClass("is-valid");
+    $('#email').removeClass("is-valid");
+    $('#phone').removeClass("is-valid");
+    $('#firstName').removeClass("is-invalid");
+    $('#lastName').removeClass("is-invalid");
+    $('#birthday').removeClass("is-invalid");
+    $('#email').removeClass("is-invalid");
+    $('#phone').removeClass("is-invalid");
     $('#id').val("");
     $('#firstName').val("");
     $('#lastName').val("");
@@ -44,8 +54,85 @@ function showDialogAdd() {
     $('#myModal').modal('show');
 }
 
+function validateFields(){
+    $('#firstName').removeClass("is-valid");
+    $('#lastName').removeClass("is-valid");
+    $('#birthday').removeClass("is-valid");
+    $('#email').removeClass("is-valid");
+    $('#phone').removeClass("is-valid");
+    $('#firstName').removeClass("is-invalid");
+    $('#lastName').removeClass("is-invalid");
+    $('#birthday').removeClass("is-invalid");
+    $('#email').removeClass("is-invalid");
+    $('#phone').removeClass("is-invalid");
+
+    var valid = true;
+
+    var firstName = $("#firstName").val();
+    var lastName = $("#lastName").val();
+    var regName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.'-]{1,45}$/i;
+
+    var Email = $("#email").val();
+    var regEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+    var phoneNum = $("#phone").val();
+    var regPhone = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+
+    var birthday = $("#birthday").val();
+    var regBirthday = /^([0-9]{4})-([0-9]{2})-([0-9]{2})$/
+
+    if (regName.test(firstName)){
+        console.log(firstName + " is a valid First Name.");
+        $('#firstName').addClass("is-valid");
+    } else{
+        console.log(firstName + " is an invalid First Name.");
+        $('#firstName').addClass("is-invalid");
+        valid = false;
+    }
+
+    if (regName.test(lastName)){
+        console.log(lastName + " is a valid Last Name.");
+        $('#lastName').addClass("is-valid");
+    } else{
+        console.log(lastName + " is an invalid Last Name.");
+        $('#lastName').addClass("is-invalid");
+        valid = false;
+    }
+
+    if (regEmail.test(Email)){
+        console.log(Email + " is a valid email.");
+        $('#email').addClass("is-valid");
+    } else {
+        console.log(Email + " is an invalid email.");
+        $('#email').addClass("is-invalid");
+        valid = false;
+    }
+
+    if (regPhone.test(phoneNum)){
+        console.log(phoneNum + " is a valid phone number.");
+        $('#phone').addClass("is-valid");
+    } else{
+        console.log(phoneNum + " is an invalid phone number.");
+        $('#phone').addClass("is-invalid");
+        valid = false;
+    }
+
+    if (regBirthday.test(birthday)){
+        console.log(birthday + " is a valid Birthday.");
+        $('#birthday').addClass("is-valid");
+    } else{
+        console.log(birthday + " is an invalid Birthday.");
+        $('#birthday').addClass("is-invalid");
+        valid = false;
+    }
+
+    if (valid == true){
+        savedChanges();
+    }
+}
+
 function savedChanges(){
-    console.log("Attempting to save changes")
+    console.log("Attempting to save changes!")
     $('#myModal').modal('hide');
 }
 
@@ -56,4 +143,4 @@ var addItemButton = $('#addItem');
 addItemButton.on("click", showDialogAdd);
 
 var saveButton = $('#saveChanges');
-saveButton.on("click", savedChanges);
+saveButton.on("click", validateFields);
