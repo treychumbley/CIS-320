@@ -128,6 +128,25 @@ function validateFields(){
 
     if (valid == true){
         savedChanges();
+        var newPerson = {first: firstName, last: lastName, email: Email, phone: phoneNum, birthdayDate: birthday};
+        console.log(newPerson);
+        var jsonString = JSON.stringify(newPerson);
+        console.log(jsonString);
+
+        var url = "api/name_list_edit";
+        //var myFieldValue = $("#jqueryPostJSONField").val();
+        var dataToServer = { fieldname : jsonString };
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: dataToServer,
+            success: function(dataToServer) {
+                console.log(dataToServer);
+            },
+            contentType: "application/json",
+            dataType: 'text' // Could be JSON or whatever too
+        });
     }
 }
 
@@ -135,6 +154,7 @@ function savedChanges(){
     console.log("Attempting to save changes!")
     $('#myModal').modal('hide');
 }
+
 
 //call code
 updateTable();
