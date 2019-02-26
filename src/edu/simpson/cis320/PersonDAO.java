@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
@@ -81,6 +82,39 @@ public class PersonDAO {
         }
         // Done! Return the results
         return list;
+    }
+
+    public static void createPerson(makePerson newPerson) {
+        log.log(Level.FINE, "Make person");
+
+        // Declare our variables
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        String first = newPerson.getFirst();
+        String last = newPerson.getLast();
+        String email = newPerson.getEmail();
+        String phone = newPerson.getPhone();
+        Date birthday = newPerson.getBirthday();
+
+        try {
+            // Get our database connection
+            conn = DBHelper.getConnection();
+
+            // This is a string that is our SQL query.
+            String sql = "INSERT INTO cis320.person (first, last, phone, birthday)" +
+                    "VALUES(?,?,?,?,?);";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, first);
+            stmt.setString(2, last);
+            stmt.setString(3, email);
+            stmt.setString(4, phone);
+            stmt.setDate(5, (java.sql.Date) birthday);
+
+        } catch (SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se);
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Error", e);
+        }
     }
 
 }

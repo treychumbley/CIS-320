@@ -19,7 +19,7 @@ function updateTable() {
 
 
             }
-            console.log("Done");
+            console.log("Ready");
         }
     );
 }
@@ -135,18 +135,19 @@ function validateFields(){
 
         var url = "api/name_list_edit";
         //var myFieldValue = $("#jqueryPostJSONField").val();
-        var dataToServer = { fieldname : jsonString };
-
         $.ajax({
             type: 'POST',
             url: url,
-            data: dataToServer,
-            success: function(dataToServer) {
-                console.log(dataToServer);
+            data: newPerson,
+            success: function(newPerson) {
+                console.log(newPerson);
             },
             contentType: "application/json",
             dataType: 'text' // Could be JSON or whatever too
         });
+        console.log("Finished");
+
+        //updateTable();
     }
 }
 

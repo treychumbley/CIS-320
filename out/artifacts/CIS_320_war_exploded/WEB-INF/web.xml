@@ -23,4 +23,6 @@
         <servlet-name>NameListEdit</servlet-name>
         <url-pattern>/api/name_list_edit</url-pattern>
     </servlet-mapping>
+
+
 </web-app>
