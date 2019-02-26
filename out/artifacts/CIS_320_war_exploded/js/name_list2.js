@@ -19,7 +19,7 @@ function updateTable() {
 
 
             }
-            console.log("Ready");
+            console.log("Good to go");
         }
     );
 }
@@ -128,7 +128,7 @@ function validateFields(){
 
     if (valid == true){
         savedChanges();
-        var newPerson = {first: firstName, last: lastName, email: Email, phone: phoneNum, birthdayDate: birthday};
+        var newPerson = {first: firstName, last: lastName, phone: phoneNum, email: Email, birthday: birthday};
         console.log(newPerson);
         var jsonString = JSON.stringify(newPerson);
         console.log(jsonString);
@@ -138,16 +138,16 @@ function validateFields(){
         $.ajax({
             type: 'POST',
             url: url,
-            data: newPerson,
-            success: function(newPerson) {
-                console.log(newPerson);
+            data: jsonString,
+            success: function(jsonString) {
+                console.log(jsonString);
             },
             contentType: "application/json",
             dataType: 'text' // Could be JSON or whatever too
         });
         console.log("Finished");
 
-        //updateTable();
+        updateTable();
     }
 }
 

@@ -29,20 +29,25 @@ public class NameListEdit extends HttpServlet {
             java.io.BufferedReader in = request.getReader();
             String requestString = new String();
             for (String line; (line = in.readLine()) != null; requestString += line) ;
-
+            out.println("test1");
             // Output the string we got as a request, just as a check
             System.out.println(requestString);
 
             // Great! Now we want to use GSON to parse the object, and pop it into our business object. Field
             // names have to match. That's the magic.
+            out.println(requestString);
             Gson gson = new Gson();
-            makePerson fromJson = gson.fromJson(requestString, makePerson.class);
+            out.println("test1.2");
+            Person newPerson = gson.fromJson(requestString, Person.class);
+            out.println("test2");
 
             // Make sure our field was set.
-            out.println("Object test: " + fromJson.getFirst() + " " + fromJson.getLast()
-                    + " " + fromJson.getEmail() + " " + fromJson.getPhone() + " " + fromJson.getBirthday());
+            out.println("Object test: " + newPerson.getFirst() + " " + newPerson.getLast()
+                    + " " + newPerson.getEmail() + " " + newPerson.getPhone() + " " + newPerson.getBirthday());
 
-            PersonDAO.createPerson(fromJson);
+            out.println("test3");
+            PersonDAO.createPerson(newPerson);
+            out.println("test4");
 
         } catch(Exception e){
             e.printStackTrace();
