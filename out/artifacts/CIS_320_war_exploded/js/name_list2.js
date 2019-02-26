@@ -24,6 +24,10 @@ function updateTable() {
     );
 }
 
+function resetTable(){
+    location.reload();
+}
+
 //called when "Add Item" button is clicked
 function showDialogAdd() {
 
@@ -147,7 +151,7 @@ function validateFields(){
         });
         console.log("Finished");
 
-        updateTable();
+        resetTable();
     }
 }
 
