@@ -132,7 +132,8 @@ function validateFields(){
 
     if (valid == true){
         savedChanges();
-        var newPerson = {first: firstName, last: lastName, phone: phoneNum, email: Email, birthday: birthday};
+        var newPhone = phoneNum.replace(/-/g, "");
+        var newPerson = {first: firstName, last: lastName, phone: newPhone, email: Email, birthday: birthday};
         console.log(newPerson);
         var jsonString = JSON.stringify(newPerson);
         console.log(jsonString);
