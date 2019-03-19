@@ -34,12 +34,12 @@ function deleteItem(e) {
     var id = e.target.value;
     console.log(id);
 
-
-    var jsonString = JSON.stringify(id);
+    var deletePerson = {id:id};
+    var jsonString = JSON.stringify(deletePerson);
     console.log(jsonString);
 
     var url = "api/name_list_delete";
-    //var myFieldValue = $("#jqueryPostJSONField").val();
+    var myFieldValue = $("#jqueryPostJSONField").val();
     $.ajax({
         type: 'POST',
         url: url,

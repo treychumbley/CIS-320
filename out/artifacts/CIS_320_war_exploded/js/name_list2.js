@@ -31,7 +31,28 @@ function updateTable() {
 
 function deleteItem(e) {
     console.log("Delete");
-    console.log(e.target.value);
+    var id = e.target.value;
+    console.log(id);
+
+    var deletePerson = {id:id};
+    var jsonString = JSON.stringify(deletePerson);
+    console.log(jsonString);
+
+    var url = "api/name_list_delete";
+    var myFieldValue = $("#jqueryPostJSONField").val();
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: jsonString,
+        success: function(jsonString) {
+            console.log(jsonString);
+        },
+        contentType: "application/json",
+        dataType: 'text' // Could be JSON or whatever too
+    });
+    console.log("Finished");
+
+    resetTable();
 }
 
 function resetTable(){

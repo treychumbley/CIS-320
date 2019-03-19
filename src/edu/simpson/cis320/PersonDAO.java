@@ -135,7 +135,10 @@ public class PersonDAO {
             conn = DBHelper.getConnection();
 
             // This is a string that is our SQL query.
-            String sql = "DELETE FROM person WHERE id=?;";
+            String sql = "DELETE FROM person WHERE id=?";
+
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
 
             stmt.executeUpdate();
 

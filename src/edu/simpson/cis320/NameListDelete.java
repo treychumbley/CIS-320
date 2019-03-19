@@ -13,6 +13,7 @@ import org.w3c.dom.NameList;
 public class NameListDelete extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
+            System.out.println("trying to delete");
             // You can output in any format, text/JSON, text/HTML, etc. We'll keep it simple
             response.setContentType("text/plain");
             PrintWriter out = response.getWriter();
@@ -34,11 +35,13 @@ public class NameListDelete extends HttpServlet {
             out.println(requestString);
             Gson gson = new Gson();
 
+
             Person deletePerson = gson.fromJson(requestString, Person.class);
 
             PersonDAO.deletePerson(deletePerson);
+            System.out.println("Sent to DAO");
 
-        } catch{
+        } catch(Exception e){
             e.printStackTrace();
         }
     }
