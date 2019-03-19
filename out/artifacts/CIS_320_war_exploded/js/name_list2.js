@@ -16,21 +16,22 @@ function updateTable() {
                 phoneNum = phoneNum.replace(/-/g, "");
                 var phone = phoneNum.substring(0,3) + "-" + phoneNum.substring(3,6) + "-" + phoneNum.substring(6,10);
                 $('#datatable tr:last').after('<tr>' +
-                    '<td><button type=\'button\' name=\'delete\' class=\'editButton btn\' value=\'" + id + "\'>Delete</button></td>' +
+                    '<td><button type=\'button\' name=\'delete\' class=\'deleteButton btn\' value=\'' + json_result[i].id + '\'>Delete</button></td>' +
                     '<td>' + id + '</td><td>' + json_result[i].first +
                     '</td><td>' + json_result[i].last + '</td><td>' + json_result[i].email + '</td><td>' +
                     phone + '</td><td>' + json_result[i].birthday + '</td></tr>')
 
-                $(".deleteButton").on("click", deleteItem);
             }
             console.log("Good to go");
+
+            $(".deleteButton").on("click", deleteItem);
         }
     );
 }
 
 function deleteItem(e) {
-    console.debug("Delete");
-    console.debug(e.target.value);
+    console.log("Delete");
+    console.log(e.target.value);
 }
 
 function resetTable(){

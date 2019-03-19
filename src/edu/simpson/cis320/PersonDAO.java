@@ -120,4 +120,30 @@ public class PersonDAO {
         }
     }
 
+    public static void deletePerson(Person deletePerson){
+        log.log(Level.FINE, "Delete person");
+
+        // Declare our variables
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int id = deletePerson.getId();
+
+
+        try {
+            // Get our database connection
+            conn = DBHelper.getConnection();
+
+            // This is a string that is our SQL query.
+            String sql = "DELETE FROM person WHERE id=?;";
+
+            stmt.executeUpdate();
+
+        } catch (SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se);
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Error", e);
+        }
+    }
+
 }
