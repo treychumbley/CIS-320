@@ -65,6 +65,8 @@ public class NameListEdit extends HttpServlet {
 
             Person newPerson = gson.fromJson(requestString, Person.class);
 
+            int id = 0;
+            id += newPerson.getId();
             String first = newPerson.getFirst();
             String last = newPerson.getLast();
             String perEmail = newPerson.getEmail();
@@ -121,8 +123,13 @@ public class NameListEdit extends HttpServlet {
 
 
             if (good == true){
-                PersonDAO.createPerson(newPerson);
-                System.out.println("All fields are valid.");
+                if (id == 0){
+                    PersonDAO.createPerson(newPerson);
+                    System.out.println("All fields are valid.");
+                } else {
+                    PersonDAO.updatePerson(newPerson);
+                    System.out.println("All fields are valid.");
+                }
             } else {
                 System.out.println("Not all fields are valid.");
             }

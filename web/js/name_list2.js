@@ -35,6 +35,17 @@ function editItem(e){
     console.log("Edit");
     console.log(e.target.value);
 
+    $('#firstName').removeClass("is-valid");
+    $('#lastName').removeClass("is-valid");
+    $('#birthday').removeClass("is-valid");
+    $('#email').removeClass("is-valid");
+    $('#phone').removeClass("is-valid");
+    $('#firstName').removeClass("is-invalid");
+    $('#lastName').removeClass("is-invalid");
+    $('#birthday').removeClass("is-invalid");
+    $('#email').removeClass("is-invalid");
+    $('#phone').removeClass("is-invalid");
+
     // Grab the id from the event
     var id = e.target.value;
 
@@ -142,6 +153,8 @@ function validateFields(){
 
     var valid = true;
 
+    var id = $("#id").val();
+
     var firstName = $("#firstName").val();
     var lastName = $("#lastName").val();
     var regName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.'-]{1,45}$/i;
@@ -203,7 +216,12 @@ function validateFields(){
     if (valid == true){
         savedChanges();
         //var newPhone = phoneNum.replace(/-/g, "");
-        var newPerson = {first: firstName, last: lastName, phone: phoneNum, email: Email, birthday: birthday};
+        if (id == "") {
+            var newPerson = {first: firstName, last: lastName, phone: phoneNum, email: Email, birthday: birthday};
+        } else {
+            var newPerson = {id: id, first: firstName, last: lastName, phone: phoneNum, email: Email, birthday: birthday};
+        }
+
         console.log(newPerson);
         var jsonString = JSON.stringify(newPerson);
         console.log(jsonString);
