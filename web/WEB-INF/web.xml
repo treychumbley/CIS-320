@@ -54,5 +54,15 @@
         <url-pattern>/api/login_servlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LogOutServlet</servlet-name>
+        <servlet-class>edu.simpson.cis320.LogOutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogOutServlet</servlet-name>
+        <url-pattern>/api/log_out_servlet</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
