@@ -19,7 +19,7 @@ function setSessionJava() {
         $("#sessionKey").val("");
         $("#sessionValue").val("");
     });
-    //getSessionJava();
+    getSessionJava();
 }
 
 // This gets session info from our back-end servlet.
@@ -30,8 +30,21 @@ function getSessionJava() {
     $.post(url, null, function (dataFromServer) {
         console.log("Finished calling servlet.");
         console.log(dataFromServer);
+        //$('#getSessionJava'.html("You are logged in as '" + dataFromServer + "'"));
         // Update the HTML with our result
-        $('#getSessionResult').html(dataFromServer)
+        if(dataFromServer.trim() != "null"){
+            $('#logOutSection').show();
+            console.log("logged in");
+            $('#getSessionResult').html("You are logged in as &#039;" + dataFromServer + "&#039;");
+
+        }
+        else{
+            $('#logOutSection').hide();
+            console.log("logged out");
+            $('#getSessionResult').html("Please log in!");
+
+        }
+
     });
 }
 
@@ -44,7 +57,7 @@ function invalidateSessionButton() {
         console.log("Logging out.");
         console.log(dataFromServer);
     });
-    //getSessionJava();
+    getSessionJava();
 }
 
 // Hook the functions above to our buttons
